@@ -1,0 +1,37 @@
+{
+  "name": "postbuzz",
+  "displayName": "post.buzz",
+  "version": "0.1.0",
+  "description": "Run social media from your agent: compose, schedule, queue, inbox, and analytics across 16+ platforms via the post.buzz MCP server.",
+  "author": {
+    "name": "NAVIKEDAR TECH PRIVATE LIMITED",
+    "email": "contact@post.buzz",
+    "url": "https://post.buzz"
+  },
+  "homepage": "https://docs.post.buzz",
+  "repository": "https://github.com/navneet35371/postbuzz-plugin",
+  "license": "MIT",
+  "keywords": [
+    "social-media",
+    "scheduling",
+    "analytics",
+    "mcp",
+    "marketing"
+  ],
+  "defaultEnabled": true,
+  "documentationUrl": "https://docs.post.buzz",
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "post.buzz API key",
+      "description": "Create one at post.buzz → Settings → API Keys. Starts with sx_live_. Required for every post.buzz tool.",
+      "sensitive": true
+    },
+    "api_url": {
+      "type": "string",
+      "title": "API base URL",
+      "description": "Override only for staging or self-hosting. Default: https://post.buzz/api",
+      "default": "https://post.buzz/api"
+    }
+  }
+}

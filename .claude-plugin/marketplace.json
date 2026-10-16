@@ -1,0 +1,29 @@
+{
+  "name": "postbuzz",
+  "description": "post.buzz — agent-first social media management. Compose, schedule, engage, and analyze across 16+ platforms from Claude Code.",
+  "owner": {
+    "name": "NAVIKEDAR TECH PRIVATE LIMITED",
+    "url": "https://post.buzz"
+  },
+  "plugins": [
+    {
+      "name": "postbuzz",
+      "source": "./",
+      "description": "post.buzz MCP server plus compose/schedule/queue/inbox/analytics commands and agents",
+      "version": "0.1.0",
+      "author": {
+        "name": "NAVIKEDAR TECH PRIVATE LIMITED",
+        "email": "contact@post.buzz",
+        "url": "https://post.buzz"
+      },
+      "homepage": "https://docs.post.buzz",
+      "license": "MIT",
+      "keywords": [
+        "social-media",
+        "scheduling",
+        "analytics",
+        "mcp"
+      ]
+    }
+  ]
+}

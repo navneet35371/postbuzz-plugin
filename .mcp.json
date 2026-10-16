@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "postbuzz": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "postbuzz-mcp@0.1.2"],
+      "env": {
+        "POSTBUZZ_API_KEY": "${user_config.api_key}",
+        "POSTBUZZ_API_URL": "${user_config.api_url}"
+      }
+    }
+  }
+}
