@@ -12,7 +12,7 @@ Codex). Requires Node.js 20+ and a post.buzz API key
 `POSTBUZZ_API_KEY` (and optional `POSTBUZZ_API_URL`) from its environment.
 
 If no postbuzz MCP tools are available in this session, every operation below
-also works through the CLI: `npx -y postbuzz-cli@0.1.3 <command>` (same
+also works through the CLI: `npx -y postbuzz-cli@0.2.0 <command>` (same
 subcommand names, one JSON value on stdout, errors as
 `{"error":{"code","message"}}` with exit 1).
 
@@ -50,6 +50,7 @@ subcommand names, one JSON value on stdout, errors as
 | Analytics | `get_post_analytics`, `get_account_analytics`, `get_bulk_post_analytics`, `get_analytics_summary`, `get_best_times`, `refresh_analytics` |
 | Teams | `list_teams`, `get_team`, `create_team`, `update_team`, `delete_team`, `add_team_account`, `remove_team_account` |
 | Bulk import | `create_post_csv_import`, `list_post_csv_imports`, `get_post_csv_import`, `get_post_csv_import_rows`, plus retry/status variants |
+| Video clipping | `create_clip` (always pass a fresh `idempotencyKey`; reuse it only to retry the same request), `get_clip` to poll, `list_clips`, `get_clip_usage` before starting |
 
 ## Standard flows
 
