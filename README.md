@@ -32,7 +32,7 @@ system: `claude --plugin-dir ./postbuzz/postbuzz-plugin`.
 
 ```bash
 ./install.sh --target codex
-# embeds $POSTBUZZ_API_KEY if exported; otherwise replace sx_live_REPLACE_ME
+# prompts for the API key; if skipped, replace sx_live_REPLACE_ME
 # in ~/.codex/config.toml afterwards
 ```
 
@@ -55,11 +55,12 @@ Uninstall mirrors it: `./uninstall.sh --target claude|codex|zcode|custom|all`.
 
 Create a key at **post.buzz → Settings → API Keys** (`sx_live_…`).
 
-- **Plugin path**: `/config` → plugin **postbuzz** → *post.buzz API key*
-  (stored in secure storage), or export `POSTBUZZ_API_KEY` before launching.
-- **install.sh path**: export `POSTBUZZ_API_KEY` before running (Codex
-  embeds it in `config.toml`; Claude reads it from the environment).
-- Staging/self-hosted: set `api_url` user config or `POSTBUZZ_API_URL`.
+- **Plugin path**: the plugin asks for it when enabled (the *post.buzz API
+  key* setting, stored in secure storage); change it later from `/plugin`.
+- **install.sh path**: run it in a terminal and paste the key at the hidden
+  prompt (Codex stores it in `config.toml`; Claude in its user-scope MCP
+  config). Skip the prompt to fill it in later.
+- Staging/self-hosted: set the plugin's `api_url` setting.
 
 Verify any time: ask the agent *"run the postbuzz setup check"* or
 `/postbuzz:setup`.

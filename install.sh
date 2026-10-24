@@ -14,11 +14,13 @@ set -euo pipefail
 # Usage:
 #   ./install.sh [--target claude|codex|zcode|custom|all] [--path DIR]
 #
+# API key: asked for interactively (hidden input) when run in a terminal;
+# never read from the environment. Skip the prompt to fill it in later.
+#
 # Env:
-#   POSTBUZZ_API_KEY   embedded into the Codex MCP config when set
 #   POSTBUZZ_NO_MCP=1  skip `claude mcp add` (used by tests / offline installs)
 
-readonly POSTBUZZ_PLUGIN_VERSION="0.2.1"
+readonly POSTBUZZ_PLUGIN_VERSION="0.2.2"
 readonly POSTBUZZ_MCP_REF="postbuzz-mcp@0.2.1"
 
 target="all"
@@ -44,6 +46,14 @@ if [ "${target}" = "custom" ] && [ -z "${custom_path}" ]; then
 fi
 
 plugin_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Ask once, only on a terminal, only for targets that configure an MCP server.
+api_key=""
+if [ -t 0 ] && { [ "${target}" = "claude" ] || [ "${target}" = "codex" ] || [ "${target}" = "all" ]; }; then
+  printf 'post.buzz API key (sx_live_…, from post.buzz → Settings → API Keys; Enter to skip): ' >&2
+  IFS= read -rs api_key || api_key=""
+  printf '\n' >&2
+fi
 skill_src="${plugin_root}/skills/postbuzz"
 agents_src="${plugin_root}/agents"
 
@@ -60,8 +70,9 @@ copy_agents() {
   mkdir -p "${dest_dir}"
   local copied=0
   while IFS= read -r -d '' f; do
-    rm -f "${dest_dir}/$(basename "$f")"
-    cp "$f" "${dest_dir}/"
+    # The plugin names its server's tools mcp__plugin_postbuzz_postbuzz; the
+    # server added here by `claude mcp add postbuzz` is plain mcp__postbuzz.
+    sed 's/mcp__plugin_postbuzz_postbuzz/mcp__postbuzz/g' "$f" > "${dest_dir}/$(basename "$f")"
     copied=$((copied + 1))
   done < <(find "${agents_src}" -name '*.md' -print0)
   echo "  agents  → ${dest_dir} (${copied} agents)"
@@ -79,13 +90,13 @@ install_claude() {
     echo "  mcp     skipped (claude CLI not found — or use the plugin system: /plugin marketplace add)"
     return
   fi
-  if [ -n "${POSTBUZZ_API_KEY:-}" ]; then
-    claude mcp add --scope user postbuzz -e POSTBUZZ_API_KEY="${POSTBUZZ_API_KEY}" -- npx -y "${POSTBUZZ_MCP_REF}" >/dev/null 2>&1 \
+  if [ -n "${api_key}" ]; then
+    claude mcp add --scope user postbuzz -e POSTBUZZ_API_KEY="${api_key}" -- npx -y "${POSTBUZZ_MCP_REF}" >/dev/null 2>&1 \
       || { echo "  mcp     postbuzz already registered (user scope) — left unchanged"; return; }
   else
     claude mcp add --scope user postbuzz -- npx -y "${POSTBUZZ_MCP_REF}" >/dev/null 2>&1 \
       || { echo "  mcp     postbuzz already registered (user scope) — left unchanged"; return; }
-    echo "  note    POSTBUZZ_API_KEY not set; export it before launching claude, or set it via /config"
+    echo "  note    no API key given; re-run ./install.sh --target claude in a terminal to enter it"
   fi
   echo "  mcp     → user-scope server 'postbuzz' (${POSTBUZZ_MCP_REF})"
 }
@@ -93,7 +104,7 @@ install_claude() {
 # Remove any existing postbuzz marker block, then append a fresh one.
 write_codex_mcp() {
   local config="$1"
-  local key="${POSTBUZZ_API_KEY:-sx_live_REPLACE_ME}"
+  local key="${api_key:-sx_live_REPLACE_ME}"
   touch "${config}"
   local tmp="${config}.tmp.postbuzz"
   awk '
@@ -120,8 +131,8 @@ install_codex() {
   copy_skill "${HOME}/.codex/skills"
   write_codex_mcp "${HOME}/.codex/config.toml"
   echo "  mcp     → ${HOME}/.codex/config.toml [mcp_servers.postbuzz]"
-  if [ -z "${POSTBUZZ_API_KEY:-}" ]; then
-    echo "  note    POSTBUZZ_API_KEY not set — edit ${HOME}/.codex/config.toml and replace sx_live_REPLACE_ME"
+  if [ -z "${api_key}" ]; then
+    echo "  note    no API key given — edit ${HOME}/.codex/config.toml and replace sx_live_REPLACE_ME"
   fi
 }
 
