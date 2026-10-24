@@ -18,8 +18,8 @@ set -euo pipefail
 #   POSTBUZZ_API_KEY   embedded into the Codex MCP config when set
 #   POSTBUZZ_NO_MCP=1  skip `claude mcp add` (used by tests / offline installs)
 
-readonly POSTBUZZ_PLUGIN_VERSION="0.2.0"
-readonly POSTBUZZ_MCP_REF="postbuzz-mcp@0.2.0"
+readonly POSTBUZZ_PLUGIN_VERSION="0.2.1"
+readonly POSTBUZZ_MCP_REF="postbuzz-mcp@0.2.1"
 
 target="all"
 custom_path=""

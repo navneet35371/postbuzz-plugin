@@ -88,7 +88,7 @@ Verify any time: ask the agent *"run the postbuzz setup check"* or
 **Skill** — `skills/postbuzz/SKILL.md`: the operating manual (tool map,
 non-negotiable rules, error handling) that all three targets share.
 
-**MCP** — `.mcp.json` pins `postbuzz-mcp@0.2.0` (stdio). Bump the pin there,
+**MCP** — `.mcp.json` pins `postbuzz-mcp@0.2.1` (stdio). Bump the pin there,
 in `install.sh` (`POSTBUZZ_MCP_REF`), and in the skill's CLI fallback line
 together.
 

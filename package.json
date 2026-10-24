@@ -1,0 +1,10 @@
+{
+  "name": "postbuzz-plugin",
+  "version": "0.2.1",
+  "private": true,
+  "description": "Pins the postbuzz-mcp server that .mcp.json launches; package-lock.json records its exact dependency tree.",
+  "license": "MIT",
+  "dependencies": {
+    "postbuzz-mcp": "0.2.1"
+  }
+}

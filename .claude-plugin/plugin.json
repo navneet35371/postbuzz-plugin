@@ -1,7 +1,7 @@
 {
   "name": "postbuzz",
   "displayName": "post.buzz",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Run social media from your agent: compose, schedule, queue, inbox, and analytics across 16+ platforms via the post.buzz MCP server.",
   "author": {
     "name": "NAVIKEDAR TECH PRIVATE LIMITED",
