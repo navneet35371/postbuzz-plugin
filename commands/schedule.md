@@ -1,7 +1,7 @@
 ---
 description: Schedule a post (existing draft or new) for a specific time, or at the best time
-argument-hint: [post id or idea] [when — time, natural language, or "best time"]
-allowed-tools: mcp__postbuzz
+argument-hint: "[post id or idea] [when — time, natural language, or \"best time\"]"
+allowed-tools: mcp__plugin_postbuzz_postbuzz
 ---
 # Schedule a post
 

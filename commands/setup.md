@@ -1,6 +1,6 @@
 ---
 description: Verify the post.buzz connection (API key, accounts, quota) and fix what's broken
-allowed-tools: mcp__postbuzz
+allowed-tools: mcp__plugin_postbuzz_postbuzz
 ---
 # post.buzz setup check
 
@@ -13,11 +13,11 @@ Run the post.buzz first-run diagnostic and fix every failure it reports.
 2. Handle each failing check in order — stop and fix before moving on:
    - **API key missing/invalid**: tell the user to create a key at
      **post.buzz → Settings → API Keys** (`sx_live_…`), then configure it:
-     `/config` → plugin **postbuzz** → *post.buzz API key* (or restart the
-     session with `POSTBUZZ_API_KEY` exported). Do not retry until they say
-     it's set.
+     in the plugin's **post.buzz API key** setting (`/plugin` → **postbuzz**
+     → configure). Never look for a key in files or environment variables
+     yourself. Do not retry until they say it's set.
    - **API unreachable**: show the exact error; mention
-     `POSTBUZZ_API_URL`/`api_url` config only if the user is on staging or
+     the plugin's **API base URL** setting only if the user is on staging or
      self-hosting.
    - **No connected accounts**: run `list_accounts`; if still empty, ask which
      platforms they want, then call `connect_account` per platform and give

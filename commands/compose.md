@@ -1,7 +1,7 @@
 ---
 description: Draft a post for one or more social platforms (saved as a draft, never auto-published)
-argument-hint: [idea or brief — include platforms and media if decided]
-allowed-tools: mcp__postbuzz
+argument-hint: "[idea or brief — include platforms and media if decided]"
+allowed-tools: mcp__plugin_postbuzz_postbuzz
 ---
 # Compose a post
 

@@ -1,6 +1,6 @@
 ---
 description: Triage the engagement inbox — comments, mentions, DMs — and reply in the user's voice
-allowed-tools: mcp__postbuzz
+allowed-tools: mcp__plugin_postbuzz_postbuzz
 ---
 # Inbox triage
 

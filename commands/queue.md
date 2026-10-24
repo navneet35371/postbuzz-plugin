@@ -1,6 +1,6 @@
 ---
 description: Review the upcoming queue — scheduled and failed posts — and fix problems
-allowed-tools: mcp__postbuzz
+allowed-tools: mcp__plugin_postbuzz_postbuzz
 ---
 # Review the post queue
 

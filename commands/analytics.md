@@ -1,7 +1,7 @@
 ---
 description: Analytics digest — account performance, best posting times, and what to do next
-argument-hint: [window in days — default 7]
-allowed-tools: mcp__postbuzz
+argument-hint: "[window in days — default 7]"
+allowed-tools: mcp__plugin_postbuzz_postbuzz
 ---
 # Analytics digest
 

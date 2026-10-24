@@ -6,10 +6,12 @@ description: Operate post.buzz — agent-first social media management — via i
 # post.buzz
 
 Drive [post.buzz](https://post.buzz) through the `postbuzz` MCP server
-(tools appear as `mcp__postbuzz__<name>` in Claude Code, plain `<name>` in
-Codex). Requires Node.js 20+ and a post.buzz API key
-(**post.buzz → Settings → API Keys**, format `sx_live_…`). The server reads
-`POSTBUZZ_API_KEY` (and optional `POSTBUZZ_API_URL`) from its environment.
+(tools appear as `mcp__plugin_postbuzz_postbuzz__<name>` when installed as a
+Claude Code plugin, `mcp__postbuzz__<name>` when added with `claude mcp add`,
+plain `<name>` in Codex). Requires Node.js 20+ and a post.buzz API key
+(**post.buzz → Settings → API Keys**, format `sx_live_…`), which the user
+enters in the plugin's **post.buzz API key** setting. Never search files or
+environment variables for a key — if it's missing, ask the user to set it.
 
 If no postbuzz MCP tools are available in this session, every operation below
 also works through the CLI: `npx -y postbuzz-cli@0.2.0 <command>` (same
